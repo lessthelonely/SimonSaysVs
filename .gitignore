@@ -1,0 +1,9 @@
+*.d
+*.zip
+*.gdbinit
+*.depend
+*.o
+*.vscode
+*.clang-format
+lab2/lab2
+proj/docs

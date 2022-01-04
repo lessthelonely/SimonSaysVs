@@ -1,0 +1,67 @@
+@lcflib.a:2019, lcf_start
+  video_test_xpm(xpm, x, y)
+> video_test_xpm(0x82d38ac, 0, 0)
+  @vc.c:20, vbe_get_mode_inf
+    lm_alloc(size, &adr)
+  < lm_alloc(256, addr: 0xeffff5c0 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 0xefb8c000)
+  @vc.c:30, vbe_get_mode_inf
+    lm_free(&adr)
+  < lm_free(addr: 0xeffff5c0 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 1)
+  @vc.c:64, get_mode_info
+    sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff590 [0xe0000000 - 0xe00ea600 <937.5 KiB>])
+  < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+  @vc.c:68, get_mode_info
+    vm_map_phys(SELF, (void*)mr.mr_base, vram_size)
+  < vm_map_phys(SELF, addr: 0xe0000000, 937.5 KiB) -> (ret: 0xefa11000)
+  @lab5.c:218, video_test_xpm
+    printf("Hello\n")
+    "Hello"
+  @vc.c:40, set_vbe_mode
+    sys_int86(&r)
+  > sys_int86(addr: 0x833cfe4 [AX: 4f02, BX: 4114, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0x833cfe4 [AX: 004f, BX: 4114, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  @kbc.c:30, kbc_subscribe_int
+    sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE|IRQ_EXCLUSIVE, &hook_id_kbc)
+  > sys_irqsetpolicy(1, 3, addr: 0x833d01c [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x833d01c [10]) -> (ret: 0)
+  @lab5.c:236, video_test_xpm
+    xpm_load(play_test_xpm, XPM_5_6_5, &sprite)
+  > xpm_load(addr: 0x82a0190, XPM_5_6_5, addr: 0xeffff600)
+  < xpm_load(addr: 0x82a0190, XPM_5_6_5, addr: 0xeffff600 [800x600 : 960000 bytes]) -> (ret: 0x8479000)
+  @lab5.c:245, video_test_xpm
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff610, addr: 0xeffff654)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @lab5.c:253, video_test_xpm
+    kbc_ih()
+    @kbc.c:22, sys_inb_cnt
+      sys_inb(port, &byte)
+    > sys_inb(0x64, addr: 0xeffff538)
+    < sys_inb(0x64, addr: 0xeffff538 [0x1d = 0b00011101])
+    @kbc.c:22, sys_inb_cnt
+      sys_inb(port, &byte)
+    > sys_inb(0x60, addr: 0xeffff53c)
+    < sys_inb(0x60, addr: 0xeffff53c [0x01 = 0b00000001])
+  @lab5.c:245, video_test_xpm
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff610, addr: 0xeffff654)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @lab5.c:253, video_test_xpm
+    kbc_ih()
+    @kbc.c:22, sys_inb_cnt
+      sys_inb(port, &byte)
+    > sys_inb(0x64, addr: 0xeffff538)
+    < sys_inb(0x64, addr: 0xeffff538 [0x1d = 0b00011101])
+    @kbc.c:22, sys_inb_cnt
+      sys_inb(port, &byte)
+    > sys_inb(0x60, addr: 0xeffff53c)
+    < sys_inb(0x60, addr: 0xeffff53c [0x81 = 0b10000001])
+  @kbc.c:37, kbc_unsubscribe_int
+    sys_irqrmpolicy(&hook_id_kbc)
+  > sys_irqrmpolicy(addr: 0x833d01c [10])
+  < sys_irqrmpolicy(addr: 0x833d01c [10]) -> (ret: 0)
+  @lab5.c:273, video_test_xpm
+    vg_exit()
+  < vg_exit() -> (ret: 0)
+< video_test_xpm(0x82d38ac, 0, 0) -> (ret: 0)

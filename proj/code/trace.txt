@@ -1,0 +1,19 @@
+@lcflib.a:2019, lcf_start
+  proj_main_loop(argc, argv)
+> proj_main_loop(0, [NULL])
+  @proj.c:38, proj_main_loop
+    printf("Holo\n")
+    "Holo"
+  @vc.c:21, vbe_get_mode_inf
+    lm_alloc(size, &adr)
+  < lm_alloc(256, addr: 0xeffff790 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 0xefb8c000)
+  @vc.c:30, vbe_get_mode_inf
+    lm_free(&adr)
+  < lm_free(addr: 0xeffff790 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 1)
+  @vc.c:64, get_mode_info
+    sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff760 [0x00000000 - 0x00000000 <0 bytes>])
+  < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+  @vc.c:68, get_mode_info
+    vm_map_phys(SELF, (void*)mr.mr_base, vram_size)
+  < vm_map_phys(SELF, addr: 0x0, 0 bytes) -> (ret: 0xffffffff)
