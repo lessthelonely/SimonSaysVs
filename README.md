@@ -1,5 +1,3 @@
-# Simon Says VS.
-
 ## Contributors
 
 Henrique Sousa
