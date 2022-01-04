@@ -12,7 +12,7 @@ Melissa Silva
 
 This is a multiplayer game based on the kid's toy called *Simon Says* that makes the game multiplayer. It is made in C for the Minix Operating System.
 
-If the reader wishes to see the game in action, please refer to the documentation inside the ***proj/doc*** folder, where PDFs with all the relevant information can be found and also how to play the game.
+If the reader wishes to see the game in action, please refer to the documentation inside the ***proj/doc*** folder, where PDFs with all the relevant information can be found and also how to play the game. To see the game in action, you can just watch the demonstration video.
 
 ## Demonstration Video on YouTube
 
